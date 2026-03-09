@@ -1,0 +1,89 @@
+/* EPUB stylesheet for The Netti */
+
+body {
+    font-family: "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    line-height: 1.5;
+    margin: 1em;
+}
+
+h1 {
+    font-variant: small-caps;
+    text-align: center;
+    letter-spacing: 0.05em;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+    font-weight: normal;
+    font-size: 1.6em;
+}
+
+h2 {
+    font-variant: small-caps;
+    font-weight: normal;
+    font-size: 1.2em;
+    margin-top: 1.5em;
+}
+
+/* Part titles */
+h1.part {
+    font-size: 1.8em;
+    margin-top: 3em;
+}
+
+/* Verse boxes - blockquotes used for versebox environment */
+blockquote {
+    border-left: 2px solid #999;
+    padding-left: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    font-style: italic;
+}
+
+/* Section breaks */
+p.center {
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+/* Footnotes / endnotes */
+.footnote, .footnotes {
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+a.footnote-ref {
+    vertical-align: super;
+    font-size: 0.75em;
+    text-decoration: none;
+}
+
+/* Lists */
+dl {
+    margin-left: 0;
+}
+
+dt {
+    font-style: italic;
+    margin-top: 0.8em;
+}
+
+dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Description lists in glossary/bibliography */
+.description dt {
+    font-weight: normal;
+    font-style: italic;
+}
+
+p {
+    text-indent: 1.2em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* First paragraph after heading - no indent */
+h1 + p, h2 + p, h3 + p, blockquote + p {
+    text-indent: 0;
+}
