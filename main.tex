@@ -1,4 +1,4 @@
-\documentclass[12pt,openany]{book}
+\documentclass[11pt,openany]{book}
 
 % Typography
 \usepackage[dvipsnames]{xcolor}
@@ -20,15 +20,8 @@
   inner=0.875in,
 ]{geometry}
 
-% Paragraph breathing
-\renewcommand{\normalsize}{\fontsize{12.5}{16}\selectfont}
-\renewcommand{\small}{\fontsize{11}{14}\selectfont}
-\renewcommand{\footnotesize}{\fontsize{9.5}{12}\selectfont}
-\renewcommand{\large}{\fontsize{15}{19}\selectfont}
-\renewcommand{\Large}{\fontsize{18}{22}\selectfont}
-\renewcommand{\huge}{\fontsize{24}{28}\selectfont}
-\renewcommand{\Huge}{\fontsize{30}{36}\selectfont}
-\renewcommand{\baselinestretch}{1.15}
+% Clean paragraph settings
+\renewcommand{\baselinestretch}{1.125}
 \setlength{\parskip}{0pt}
 \setlength{\parindent}{1.2em}
 \frenchspacing
@@ -36,16 +29,16 @@
 \clubpenalty=10000
 \sloppy
 
-% Chapter and section headings — elegant small caps
+% Chapter and section headings — elegant, centered
 \usepackage[center,sc]{titlesec}
 \titleformat{\chapter}[display]
-  {\normalfont\huge\scshape\centering}
-  {\chaptername\ \thechapter}{16pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{40pt}{30pt}
+  {\normalfont\Large\scshape\centering}
+  {\chaptername\ \thechapter}{12pt}{\huge\bfseries}
+\titlespacing*{\chapter}{0pt}{30pt}{24pt}
 \titleformat{\section}
-  {\normalfont\Large\scshape}{}{0pt}{}
+  {\normalfont\large\scshape}{}{0pt}{}
 \titleformat{\subsection}
-  {\normalfont\large\itshape}{}{0pt}{}
+  {\normalfont\itshape}{}{0pt}{}
 
 % Headers/footers — clean, minimal
 \usepackage{fancyhdr}
@@ -53,7 +46,7 @@
 \fancypagestyle{main}{%
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
-  \fancyhead[CE]{\footnotesize\itshape\MakeUppercase{The Netti}}
+  \fancyhead[CE]{\footnotesize\itshape The Netti}
   \fancyhead[CO]{\footnotesize\itshape\leftmark}
   \fancyhf[CFE,CFO]{\thepage}
 }
@@ -68,7 +61,7 @@
 \usepackage{adforn}
 \setlength{\stanzaskip}{0.75\baselineskip}
 
-% Verse box — subtle left bar for translated poetry
+% Verse box — subtle left bar for translated poetry, ragged right
 \usepackage{mdframed}
 \newmdenv[
   linewidth=0pt,
@@ -82,16 +75,26 @@
   innerbottommargin=8pt,
   skipabove=\baselineskip,
   skipbelow=\baselineskip,
-]{versebox}
+]{versebox@inner}
 
-% Section break ornament
-\newcommand{\sectionbreak}{%
-  \bigskip
-  \centerline{\adforn{33}}
+% Wrap versebox to force ragged right (so \\ works as line breaks, not justified)
+\newenvironment{versebox}{%
+  \begin{versebox@inner}\raggedright\setlength{\parindent}{0pt}%
+}{%
+  \end{versebox@inner}%
+}
+
+% Stanza break inside versebox — visible vertical gap between stanzas
+\newcommand{\stanza}{\par\vspace{0.5\baselineskip}\noindent}
+
+% Section break ornament — single, elegant
+\newcommand{\ornament}{%
+  \par\bigskip
+  \noindent\centerline{\adforn{21}}
   \bigskip
 }
 
-% End-of-chapter notes (the glorious scholarly apparatus)
+% End-of-chapter notes — ALL notes collect at the back of the book
 \usepackage{enotez}
 \setenotez{
   list-name={Notes},
@@ -119,19 +122,13 @@
 
 % Table of contents styling
 \usepackage[titles]{tocloft}
-\renewcommand{\cftchapfont}{\large\itshape}
+\renewcommand{\cftchapfont}{\itshape}
 \renewcommand{\cftchappagefont}{\normalfont}
-\renewcommand{\numberline}[1]{}
 
 % Custom commands
 \newcommand{\pali}[1]{\textit{#1}}          % Inline Pali terms
 \newcommand{\term}[1]{\textbf{\textit{#1}}} % Key technical terms (first use)
 \newcommand{\suttaref}[1]{(\textsc{#1})}    % Sutta references
-
-% Drop cap for chapter openings
-\newcommand{\chapteropening}[2]{%
-  \lettrine[lines=3,lhang=0.1,loversize=0.1,findent=0.2em]{#1}{#2}%
-}
 
 % Book metadata
 \newcommand{\booktitle}{The Netti}
